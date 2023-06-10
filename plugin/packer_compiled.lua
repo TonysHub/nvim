@@ -109,11 +109,6 @@ _G.packer_plugins = {
     path = "/Users/tonylee/.local/share/nvim/site/pack/packer/start/mason.nvim",
     url = "https://github.com/williamboman/mason.nvim"
   },
-  moonfly = {
-    loaded = true,
-    path = "/Users/tonylee/.local/share/nvim/site/pack/packer/start/moonfly",
-    url = "https://github.com/bluz71/vim-moonfly-colors"
-  },
   nerdtree = {
     loaded = true,
     path = "/Users/tonylee/.local/share/nvim/site/pack/packer/start/nerdtree",
@@ -194,6 +189,11 @@ _G.packer_plugins = {
     loaded = true,
     path = "/Users/tonylee/.local/share/nvim/site/pack/packer/start/vim-surround",
     url = "https://github.com/tpope/vim-surround"
+  },
+  ["vim-visual-multi"] = {
+    loaded = true,
+    path = "/Users/tonylee/.local/share/nvim/site/pack/packer/start/vim-visual-multi",
+    url = "https://github.com/mg979/vim-visual-multi"
   },
   ["vscode.nvim"] = {
     loaded = true,

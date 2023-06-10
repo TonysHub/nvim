@@ -2,7 +2,6 @@
 
 -- Only required if you have packer configured as `opt`
 vim.cmd [[packadd packer.nvim]]
-vim.cmd [[colorscheme moonfly]]
 return require('packer').startup(function(use)
   -- Packer can manage itself
   use 'wbthomason/packer.nvim'
@@ -12,7 +11,6 @@ return require('packer').startup(function(use)
 	  -- or                            , branch = '0.1.x',
 	  requires = { {'nvim-lua/plenary.nvim'} }
   }
-  use { "bluz71/vim-moonfly-colors", as = "moonfly" }
   
   use('nvim-treesitter/nvim-treesitter', {run = ':TSUpdate'})
   use('nvim-treesitter/playground')
@@ -38,7 +36,7 @@ return require('packer').startup(function(use)
 	    {'hrsh7th/cmp-nvim-lsp'}, -- Required
 	    {'L3MON4D3/LuaSnip'},     -- Required
 	  }
-}
+    }
     use('preservim/nerdtree')
     use {"akinsho/toggleterm.nvim", tag = '*', config = function()
         require("toggleterm").setup()
@@ -50,5 +48,7 @@ return require('packer').startup(function(use)
     use("vim-airline/vim-airline")
     use('Mofiqul/vscode.nvim')
     use('ryanoasis/vim-devicons')
+    use('mg979/vim-visual-multi', {branch= 'master'})
+    
 end)
 

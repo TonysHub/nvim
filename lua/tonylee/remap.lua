@@ -29,7 +29,7 @@ vim.keymap.set({"n", "v"}, "<leader>d", [["_d]])
 
 
 vim.keymap.set("i", "<C-c>", "<Esc>")
-
+vim.keymap.set("n", "<leader>g", "ggVG")
 vim.keymap.set("n", "Q", "<nop>")
 vim.keymap.set("n", "<C-f>", "<cmd>silent !tmux neww tmux-sessionizer<CR>")
 vim.keymap.set("n", "<leader>f", vim.lsp.buf.format)
@@ -44,7 +44,7 @@ vim.keymap.set("n", "<leader>x", "<cmd>!chmod +x %<CR>", { silent = true })
 
 vim.keymap.set("n", "<leader>vpp", "<cmd>e ~/.dotfiles/nvim/.config/nvim/lua/theprimeagen/packer.lua<CR>");
 vim.keymap.set("n", "<leader>mr", "<cmd>CellularAutomaton make_it_rain<CR>");
-
+vim.keymap.set("n", "<leader>q", ":q<CR>")
 vim.keymap.set("n", "<leader><leader>", function()
     vim.cmd("so")
 

@@ -4,8 +4,12 @@ lsp.preset("recommended")
 lsp.ensure_installed({
   'tsserver',
   'rust_analyzer',
-  'jedi_language_server',
+  -- 'jedi_language_server',
+  'pylsp',
+  -- 'flake8',
 })
+
+vim.cmd([[autocmd BufRead,BufNewFile *.py let b:syntastic_python_flake8_args="--ignore=E501"]])
 
 -- Fix Undefined global 'vim'
 lsp.nvim_workspace()
@@ -52,9 +56,35 @@ lsp.on_attach(function(client, bufnr)
   vim.keymap.set("i", "<C-h>", function() vim.lsp.buf.signature_help() end, opts)
 end)
 
-lsp.setup()
 
-vim.diagnostic.config({
-    virtual_text = true
-})
+local pylsp_config = {
+  pylsp = {
+    plugins = {
+      pycodestyle = {
+        enabled = true,
+        ignore = {"E501"}
+      }
+    }
+  }
+}
 
+-- lsp.setup({
+--   pylsp = pylsp_config
+-- })
+
+require('lspconfig').pylsp.setup{
+   settings = {
+       pylsp = {
+           plugins = {
+                 pycodestyle = {
+                    enabled = true,   
+                    ignore = {"E501"}
+                 },
+                 flake8 = {
+                    enabled = false,
+                    ignore = {"E501"}
+                 }
+            }
+        }
+    }
+}

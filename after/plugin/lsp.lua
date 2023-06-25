@@ -68,9 +68,9 @@ local pylsp_config = {
   }
 }
 
--- lsp.setup({
---   pylsp = pylsp_config
--- })
+lsp.setup({
+  pylsp = pylsp_config
+})
 
 require('lspconfig').pylsp.setup{
    settings = {

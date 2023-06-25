@@ -103,7 +103,7 @@ require("nvim-tree").setup {
         side = "left",
         preserve_window_proportions = false,
         number = false,
-        relativenumber = false,
+        relativenumber = true,
         signcolumn = "yes",
         mappings = {
           custom_only = false,

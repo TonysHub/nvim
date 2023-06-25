@@ -61,9 +61,13 @@ local pylsp_config = {
   pylsp = {
     plugins = {
       pycodestyle = {
+        enabled = false,
+        ignore = {"E501"}
+      },
+      flake8 = {
         enabled = true,
         ignore = {"E501"}
-      }
+      },
     }
   }
 }
@@ -77,11 +81,11 @@ require('lspconfig').pylsp.setup{
        pylsp = {
            plugins = {
                  pycodestyle = {
-                    enabled = true,   
+                    enabled = false,   
                     ignore = {"E501"}
                  },
                  flake8 = {
-                    enabled = false,
+                    enabled = true,
                     ignore = {"E501"}
                  }
             }

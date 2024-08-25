@@ -1,4 +1,17 @@
-# 💤 LazyVim
+# lazy-nvim
 
-A starter template for [LazyVim](https://github.com/LazyVim/LazyVim).
-Refer to the [documentation](https://lazyvim.github.io/installation) to get started.
+In home dir
+
+```
+$ brew install install fd ripgrep wget gcc gzip gnu-tar gnu-sed git curl lazygit
+```
+
+```
+$ cd .config
+```
+
+```
+$ git clone https://github.com/TonysHub/nvim.git
+```
+
+You're good to go

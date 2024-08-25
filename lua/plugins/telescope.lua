@@ -1,43 +1,74 @@
 return {
-  "nvim-telescope/telescope.nvim",
-  opts = function()
-    local actions = require("telescope.actions")
+  {
+    "nvim-telescope/telescope.nvim",
+    keys = {
+      { "<leader><space>", false }, -- Disable the default mapping for <leader><space>
+      {
+        "<leader>sf",
+        function()
+          require("telescope.builtin").grep_string({ search = vim.fn.input("Grep > ") })
+        end,
+        desc = "[S]earch [F]ile",
+      },
+      {
+        "<leader>sf",
+        function()
+          local function getVisualSelection()
+            vim.cmd('noau normal! "vy"')
+            local text = vim.fn.getreg("v")
+            vim.fn.setreg("v", {})
 
-    local open_with_trouble = function(...)
-      return require("trouble.sources.telescope").open(...)
-    end
-    local find_files_no_ignore = function()
-      local action_state = require("telescope.actions.state")
-      local line = action_state.get_current_line()
-      LazyVim.pick("find_files", { no_ignore = true, default_text = line })()
-    end
-    local find_files_with_hidden = function()
-      local action_state = require("telescope.actions.state")
-      local line = action_state.get_current_line()
-      LazyVim.pick("find_files", { hidden = true, default_text = line })()
-    end
+            text = string.gsub(text, "\n", "")
+            if #text > 0 then
+              return text
+            else
+              return ""
+            end
+          end
 
-    local function find_command()
-      if 1 == vim.fn.executable("rg") then
-        return { "rg", "--files", "--color", "never", "-g", "!.git" }
-      elseif 1 == vim.fn.executable("fd") then
-        return { "fd", "--type", "f", "--color", "never", "-E", ".git" }
-      elseif 1 == vim.fn.executable("fdfind") then
-        return { "fdfind", "--type", "f", "--color", "never", "-E", ".git" }
-      elseif 1 == vim.fn.executable("find") and vim.fn.has("win32") == 0 then
-        return { "find", ".", "-type", "f" }
-      elseif 1 == vim.fn.executable("where") then
-        return { "where", "/r", ".", "*" }
+          local text = getVisualSelection()
+          require("telescope.builtin").live_grep({ default_text = text })
+        end,
+        mode = "v",
+        desc = "[S]earch [F]ile",
+      },
+    },
+    opts = function(_, opts)
+      local actions = require("telescope.actions")
+
+      local open_with_trouble = function(...)
+        return require("trouble.sources.telescope").open(...)
       end
-    end
 
-    return {
-      keys = { { "<leader><space>", false } },
-      defaults = {
+      local find_files_no_ignore = function()
+        local action_state = require("telescope.actions.state")
+        local line = action_state.get_current_line()
+        LazyVim.pick("find_files", { no_ignore = true, default_text = line })()
+      end
+
+      local find_files_with_hidden = function()
+        local action_state = require("telescope.actions.state")
+        local line = action_state.get_current_line()
+        LazyVim.pick("find_files", { hidden = true, default_text = line })()
+      end
+
+      local function find_command()
+        if vim.fn.executable("rg") == 1 then
+          return { "rg", "--files", "--color", "never", "-g", "!.git" }
+        elseif vim.fn.executable("fd") == 1 then
+          return { "fd", "--type", "f", "--color", "never", "-E", ".git" }
+        elseif vim.fn.executable("fdfind") == 1 then
+          return { "fdfind", "--type", "f", "--color", "never", "-E", ".git" }
+        elseif vim.fn.executable("find") == 1 and vim.fn.has("win32") == 0 then
+          return { "find", ".", "-type", "f" }
+        elseif vim.fn.executable("where") == 1 then
+          return { "where", "/r", ".", "*" }
+        end
+      end
+
+      opts.defaults = vim.tbl_deep_extend("force", opts.defaults or {}, {
         prompt_prefix = " ",
         selection_caret = " ",
-        -- open files in the first window that is an actual file.
-        -- use the current window if no other window is available.
         get_selection_window = function()
           local wins = vim.api.nvim_list_wins()
           table.insert(wins, 1, vim.api.nvim_get_current_win())
@@ -102,15 +133,17 @@ return {
         border = {},
         borderchars = { "─", "│", "─", "│", "╭", "╮", "╯", "╰" },
         color_devicons = true,
-        set_env = { ["COLORTERM"] = "truecolor" }, -- default = nil,
-      },
-      pickers = {
+        set_env = { ["COLORTERM"] = "truecolor" },
+      })
+
+      opts.pickers = vim.tbl_deep_extend("force", opts.pickers or {}, {
         find_files = { find_command = find_command, hidden = true },
         live_grep = {
-          -- @usage don't include the filename in the search results
           only_sort_text = true,
         },
-      },
-    }
-  end,
+      })
+
+      return opts
+    end,
+  },
 }

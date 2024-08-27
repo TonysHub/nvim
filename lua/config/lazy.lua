@@ -17,7 +17,13 @@ vim.opt.rtp:prepend(lazypath)
 require("lazy").setup({
   spec = {
     -- add LazyVim and import its plugins
-    { "LazyVim/LazyVim", import = "lazyvim.plugins" },
+    {
+      "LazyVim/LazyVim",
+      import = "lazyvim.plugins",
+      opts = function()
+        vim.opt.signcolumn = "no"
+      end,
+    },
     -- import/override with your plugins
     { "rebelot/kanagawa.nvim" },
     { import = "plugins" },

@@ -10,7 +10,7 @@ return {
     require("mason-lspconfig").setup()
 
     local servers = {
-      tsserver = {
+      ts_ls = {
         settings = {
           formatting = true,
           formatoptions = {
@@ -39,6 +39,13 @@ return {
             fetchDeps = true,
             suggestSpecs = true,
           },
+        },
+      },
+      eslint = {
+        filetypes = { "javascript", "javascriptreact", "typescript", "typescriptreact" },
+        settings = {
+          format = { enable = false },
+          lint = { enable = true },
         },
       },
       html = {

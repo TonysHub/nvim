@@ -20,11 +20,7 @@ require("lazy").setup({
     {
       "LazyVim/LazyVim",
       import = "lazyvim.plugins",
-      opts = function()
-        vim.opt.signcolumn = "no"
-      end,
     },
-    -- import/override with your plugins
     { "rebelot/kanagawa.nvim" },
     { import = "plugins" },
   },

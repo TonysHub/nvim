@@ -41,13 +41,13 @@ return {
           },
         },
       },
-      eslint = {
-        filetypes = { "javascript", "javascriptreact", "typescript", "typescriptreact" },
-        settings = {
-          format = { enable = false },
-          lint = { enable = true },
-        },
-      },
+      -- eslint = {
+      --   filetypes = { "javascript", "javascriptreact", "typescript", "typescriptreact" },
+      --   settings = {
+      --     format = { enable = false },
+      --     lint = { enable = true },
+      --   },
+      -- },
       html = {
         filetypes = { "html", "htmldjango" }, -- Add "django-html" as a recognized filetype
         settings = {

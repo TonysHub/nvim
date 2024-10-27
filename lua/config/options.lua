@@ -63,6 +63,7 @@ vim.cmd([[
   augroup END
 ]])
 
+vim.g.python3_host_prog = os.getenv("MY_PYTHON_PATH")
 for option, value in pairs(options) do
   vim.opt[option] = value
 end

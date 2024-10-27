@@ -31,6 +31,18 @@ return {
           },
         },
       },
+      gopls = {
+        filetypes = { "go" },
+        settings = {
+          gopls = {
+            analyses = {
+              unusedparams = true,
+              shadow = true,
+            },
+            staticcheck = true,
+          },
+        },
+      },
       elixirls = {
         filetypes = { "elixir" },
         settings = {

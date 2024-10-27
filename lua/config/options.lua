@@ -60,6 +60,7 @@ vim.cmd([[
   autocmd FileType html setlocal shiftwidth=2
   autocmd FileType css setlocal shiftwidth=2
   autocmd FileType lua setlocal shiftwidth=2
+  autocmd FileType go setlocal shiftwidth=4 tabstop=4
   augroup END
 ]])
 

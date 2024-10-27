@@ -12,7 +12,8 @@ return {
             return { "isort", "black" }
           end
         end,
-        go = { "gofmt", "gofumpt" },
+        -- go = { "gofmt", "gofumpt" },
+        go = { "gofumpt" },
         elixir = { "mix" },
         javascript = { { "prettierd", "prettier" } },
         typescript = { "prettier" },

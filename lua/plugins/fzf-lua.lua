@@ -154,6 +154,7 @@ return {
     end)
   end,
   keys = {
+    { "<leader><space>", false }, -- Disable the default mapping for <leader><space>
     { "<leader>/", LazyVim.pick("live_grep"), desc = "Grep (Root Dir)" },
     { "<leader>:", "<cmd>FzfLua command_history<cr>", desc = "Command History" },
     -- find

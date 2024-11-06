@@ -176,8 +176,15 @@ return {
     { "<leader>sC", "<cmd>FzfLua commands<cr>", desc = "Commands" },
     { "<leader>sd", "<cmd>FzfLua diagnostics_document<cr>", desc = "Document Diagnostics" },
     { "<leader>sD", "<cmd>FzfLua diagnostics_workspace<cr>", desc = "Workspace Diagnostics" },
-    { "<leader>sf", LazyVim.pick("live_grep"), desc = "Grep (Root Dir)" },
-    { "<leader>sF", LazyVim.pick("live_grep", { root = false }), desc = "Grep (cwd)" },
+    {
+      "<leader>sf",
+      function()
+        require("fzf-lua").grep({
+          search = vim.fn.input("Grep > "),
+        })
+      end,
+      desc = "[S]earch [F]ile",
+    },
     { "<leader>sh", "<cmd>FzfLua help_tags<cr>", desc = "Help Pages" },
     { "<leader>sH", "<cmd>FzfLua highlights<cr>", desc = "Search Highlight Groups" },
     { "<leader>sj", "<cmd>FzfLua jumps<cr>", desc = "Jumplist" },

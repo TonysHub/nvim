@@ -188,6 +188,7 @@ return {
         signs = true,
         update_in_insert = false,
       })
+      client.server_capabilities.documentHighlightProvider = false
     end
 
     local capabilities = vim.lsp.protocol.make_client_capabilities()

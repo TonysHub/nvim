@@ -10,27 +10,13 @@ return {
     require("mason-lspconfig").setup()
 
     local servers = {
-      -- ts_ls = {
-      --   settings = {
-      --     formatting = true,
-      --     formatoptions = {
-      --       tabSize = 2,
-      --       useTabs = false,
-      --     },
-      --   },
-      -- },
-      --- @deprecated -- tsserver renamed to ts_ls but not yet released, so keep this for now
-      --- the proper approach is to check the nvim-lspconfig release version when it's released to determine the server name dynamically
-      -- tsserver = {
-      --   enabled = false,
-      -- },
-      -- ts_ls = {
-      --   enabled = false,
-      -- },
-      vtsls = {
+      ts_ls = {
         -- explicitly add default filetypes, so that we can extend
         -- them in related extras
         filetypes = {
+          "javascript",
+          "javascriptreact",
+          "javascript.jsx",
           "typescript",
           "typescriptreact",
           "typescript.tsx",
@@ -60,8 +46,39 @@ return {
               variableTypes = { enabled = false },
             },
           },
+          javascript = {
+            updateImportsOnFileMove = { enabled = "always" },
+            suggest = {
+              completeFunctionCalls = true,
+            },
+            inlayHints = {
+              enumMemberValues = { enabled = true },
+              functionLikeReturnTypes = { enabled = true },
+              parameterNames = { enabled = "literals" },
+              parameterTypes = { enabled = true },
+              propertyDeclarationTypes = { enabled = true },
+              variableTypes = { enabled = false },
+            },
+          },
         },
       },
+      -- ts_ls = {
+      --   settings = {
+      --     formatting = true,
+      --     formatoptions = {
+      --       tabSize = 2,
+      --       useTabs = false,
+      --     },
+      --   },
+      -- },
+      --- @deprecated -- tsserver renamed to ts_ls but not yet released, so keep this for now
+      --- the proper approach is to check the nvim-lspconfig release version when it's released to determine the server name dynamically
+      -- tsserver = {
+      --   enabled = false,
+      -- },
+      -- ts_ls = {
+      --   enabled = false,
+      -- },
       efm = {
         init_options = { documentFormatting = true },
         filetypes = { "javascript", "javascriptreact", "jsx" },
@@ -96,13 +113,6 @@ return {
           },
         },
       },
-      -- eslint = {
-      --   filetypes = { "javascript", "javascriptreact", "typescript", "typescriptreact" },
-      --   settings = {
-      --     format = { enable = false },
-      --     lint = { enable = true },
-      --   },
-      -- },
       html = {
         filetypes = { "html", "htmldjango" }, -- Add "django-html" as a recognized filetype
         settings = {
